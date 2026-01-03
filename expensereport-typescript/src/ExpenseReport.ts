@@ -25,7 +25,7 @@ class ExpenseReport {
     this.expenses = expenses
   }
 
-  title = (): boolean =>
+  printTitle = (): boolean =>
     process.stdout.write('Expenses: ' + new Date().toISOString().substr(0, 10) + '\n')
 
   getExpenseName(expense: Expense, expenseName: string): string {
@@ -44,7 +44,7 @@ class ExpenseReport {
   }
 
   printReport(): void {
-    this.title()
+    this.printTitle()
 
     this.calculateMealExpenses()
 
