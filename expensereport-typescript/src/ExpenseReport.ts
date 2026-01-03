@@ -34,6 +34,12 @@ class Expense {
   mealOverExpensesMarker(): string {
     return this.isItOverExpense() ? 'X' : ' '
   }
+
+  getExpenseName(): string {
+    return this.type
+      .replace('-', ' ')
+      .replace(/(^|\s+)\w/g, match => match.toUpperCase())
+  }
 }
 
 class ExpenseReport {
@@ -87,7 +93,7 @@ class ExpenseReport {
 
   private printExpenseDetails(expense: Expense) {
     process.stdout.write(
-      this.getExpenseName(expense) + '\t' + expense.amount + '\t' + expense.mealOverExpensesMarker() + '\n',
+      expense.getExpenseName() + '\t' + expense.amount + '\t' + expense.mealOverExpensesMarker() + '\n',
     )
   }
 
