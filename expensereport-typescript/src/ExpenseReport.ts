@@ -17,6 +17,13 @@ class Expense {
   }
 }
 
+class ExpenseReport {
+  expenses: Expense[]
+  constructor(expenses: Expense[]) {
+    this.expenses = expenses
+  }
+}
+
 function printReport(expenses: Expense[]): void {
   let totalExpenses = 0
   let mealExpenses = 0
