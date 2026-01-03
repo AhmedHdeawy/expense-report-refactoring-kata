@@ -15,6 +15,10 @@ class Expense {
     this.type = type
     this.amount = amount
   }
+
+  isItFoodExpense(): boolean {
+    return this.type === 'dinner' || this.type === 'breakfast'
+  }
 }
 
 class ExpenseReport {
@@ -74,7 +78,7 @@ class ExpenseReport {
 
   private calculateMealExpenses() {
     for (const expense of this.expenses) {
-      if (expense.type == 'dinner' || expense.type == 'breakfast') {
+      if (expense.isItFoodExpense()) {
         this.mealExpenses += expense.amount
       }
     }
