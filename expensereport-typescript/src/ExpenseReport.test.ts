@@ -1,4 +1,4 @@
-import { printHelloWorld, sumTwoValues, Expense, ExpenseReport } from './ExpenseReport'
+import { printHelloWorld, sumTwoValues, Expense, ExpenseReport, ExpenseTypeEnum } from './ExpenseReport'
 
 describe(`ExpenseReport`, () => {
   const todayDate = new Date().toISOString().substr(0, 10)
@@ -9,7 +9,7 @@ describe(`ExpenseReport`, () => {
       return true
     })
 
-    new ExpenseReport([new Expense('dinner', 5001)]).printReport()
+    new ExpenseReport([new Expense(ExpenseTypeEnum.Dinner, 5001)]).printReport()
     expect(interceptedOutput).toEqual(
       `Expenses: ${todayDate}\nDinner\t5001\tX\nMeal Expenses: 5001\nTotal Expenses: 5001\n`,
     )
@@ -22,7 +22,7 @@ describe(`ExpenseReport`, () => {
       return true
     })
 
-    new ExpenseReport([new Expense('breakfast', 1003)]).printReport()
+    new ExpenseReport([new Expense(ExpenseTypeEnum.Breakfast, 1003)]).printReport()
     expect(interceptedOutput).toEqual(
       `Expenses: ${todayDate}\nBreakfast\t1003\tX\nMeal Expenses: 1003\nTotal Expenses: 1003\n`,
     )
@@ -35,7 +35,7 @@ describe(`ExpenseReport`, () => {
       return true
     })
 
-    new ExpenseReport([new Expense('car-rental', 3000)]).printReport()
+    new ExpenseReport([new Expense(ExpenseTypeEnum.CarRental, 3000)]).printReport()
     expect(interceptedOutput).toEqual(
       `Expenses: ${todayDate}\nCar Rental\t3000\t \nMeal Expenses: 0\nTotal Expenses: 3000\n`,
     )
@@ -50,10 +50,10 @@ describe(`ExpenseReport`, () => {
     })
 
     new ExpenseReport([
-      new Expense('dinner', 4000),
-      new Expense('breakfast', 800),
-      new Expense('car-rental', 2000),
-      new Expense('dinner', 6000),
+      new Expense(ExpenseTypeEnum.Dinner, 4000),
+      new Expense(ExpenseTypeEnum.Breakfast, 800),
+      new Expense(ExpenseTypeEnum.CarRental, 2000),
+      new Expense(ExpenseTypeEnum.Dinner, 6000),
     ]).printReport()
     expect(interceptedOutput).toEqual(
       `Expenses: ${todayDate}\nDinner\t4000\t \nBreakfast\t800\t \nCar Rental\t2000\t \nDinner\t6000\tX\nMeal Expenses: 10800\nTotal Expenses: 12800\n`,
