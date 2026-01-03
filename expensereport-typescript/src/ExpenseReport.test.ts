@@ -26,6 +26,22 @@ describe(`ExpenseReport`, () => {
       `Expenses: ${new Date().toISOString().substr(0, 10)}\nBreakfast\t1003\tX\nMeal Expenses: 1003\nTotal Expenses: 1003\n`,
     )
   })
+
+
+  it(`should keep its original behavior for car-rental`, () => {
+    let interceptedOutput = ''
+    jest.spyOn(process.stdout, 'write').mockImplementation((output: string): boolean => {
+      interceptedOutput += output
+      return true
+    })
+
+    new ExpenseReport([new Expense('car-rental', 3000)]).printReport()
+    expect(interceptedOutput).toEqual(
+      `Expenses: ${new Date()
+        .toISOString()
+        .substr(0, 10)}\nCar Rental\t3000\t \nMeal Expenses: 0\nTotal Expenses: 3000\n`,
+    )
+  })
 })
 
 describe(`given I have this test suite`, () => {
