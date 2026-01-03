@@ -22,6 +22,33 @@ class ExpenseReport {
   constructor(expenses: Expense[]) {
     this.expenses = expenses
   }
+
+  printReport(): void {
+    let totalExpenses = 0
+    let mealExpenses = 0
+
+    title()
+
+
+    for (const expense of this.expenses) {
+      if (expense.type == "dinner" || expense.type == "breakfast") {
+        mealExpenses += expense.amount
+      }
+
+      let expenseName = ""
+      expenseName = getExpenseName(expense, expenseName)
+
+      const mealOverExpensesMarker = expense.type == "dinner" && expense.amount > 5000 || expense.type == "breakfast" && expense.amount > 1000 ? "X" : " "
+
+      process.stdout.write(expenseName + "\t" + expense.amount + "\t" + mealOverExpensesMarker + "\n")
+
+      totalExpenses += expense.amount
+    }
+
+    process.stdout.write("Meal Expenses: " + mealExpenses + "\n")
+    process.stdout.write("Total Expenses: " + totalExpenses + "\n")
+  }
+
 }
 
 const title = () => process.stdout.write("Expenses: " + new Date().toISOString().substr(0, 10) + "\n")
@@ -41,30 +68,5 @@ function getExpenseName(expense: Expense, expenseName: string) {
   return expenseName
 }
 
-function printReport(expenses: Expense[]): void {
-  let totalExpenses = 0
-  let mealExpenses = 0
 
-  title()
-
-
-  for (const expense of expenses) {
-    if (expense.type == "dinner" || expense.type == "breakfast") {
-      mealExpenses += expense.amount
-    }
-
-    let expenseName = ""
-    expenseName = getExpenseName(expense, expenseName)
-
-    const mealOverExpensesMarker = expense.type == "dinner" && expense.amount > 5000 || expense.type == "breakfast" && expense.amount > 1000 ? "X" : " "
-
-    process.stdout.write(expenseName + "\t" + expense.amount + "\t" + mealOverExpensesMarker + "\n")
-
-    totalExpenses += expense.amount
-  }
-
-  process.stdout.write("Meal Expenses: " + mealExpenses + "\n")
-  process.stdout.write("Total Expenses: " + totalExpenses + "\n")
-}
-
-export {sumTwoValues, printHelloWorld, printReport, Expense, ExpenseType}
+export { sumTwoValues, printHelloWorld, ExpenseReport, Expense, ExpenseType }

@@ -1,4 +1,4 @@
-import { printHelloWorld, printReport, sumTwoValues, Expense, ExpenseType } from './ExpenseReport'
+import { printHelloWorld, sumTwoValues, Expense, ExpenseType, ExpenseReport } from './ExpenseReport'
 
 describe(`ExpenseReport`, () => {
     it(`should keep its original behavior`, () => {
@@ -7,9 +7,8 @@ describe(`ExpenseReport`, () => {
             interceptedOutput += output
             return true;
         })
-        printReport([
-          new Expense("dinner", 5001)
-        ])
+
+      new ExpenseReport([new Expense('dinner', 5001)]).printReport()
         expect(interceptedOutput).toEqual(
           `Expenses: ${new Date().toISOString().substr(0, 10)}\nDinner\t5001\tX\nMeal Expenses: 5001\nTotal Expenses: 5001\n`,
         )
