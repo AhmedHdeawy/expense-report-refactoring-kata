@@ -59,6 +59,20 @@ describe(`ExpenseReport`, () => {
       `Expenses: ${new Date().toISOString().substr(0, 10)}\nDinner\t4000\t \nBreakfast\t800\t \nCar Rental\t2000\t \nDinner\t6000\tX\nMeal Expenses: 10800\nTotal Expenses: 12800\n`,
     )
   })
+
+  // add test for no expenses
+  it(`should handle no expenses correctly`, () => {
+    let interceptedOutput = ''
+    jest.spyOn(process.stdout, 'write').mockImplementation((output: string): boolean => {
+      interceptedOutput += output
+      return true
+    })
+
+    new ExpenseReport([]).printReport()
+    expect(interceptedOutput).toEqual(
+      `Expenses: ${new Date().toISOString().substr(0, 10)}\nMeal Expenses: 0\nTotal Expenses: 0\n`,
+    )
+  })
 })
 
 describe(`given I have this test suite`, () => {
