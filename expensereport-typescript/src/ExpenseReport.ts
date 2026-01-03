@@ -14,20 +14,22 @@ enum ExpenseTypeEnum {
 }
 
 class Expense {
-  type: ExpenseType
+  type: ExpenseTypeEnum
   amount: number
-  constructor(type: ExpenseType, amount: number) {
+  constructor(type: ExpenseTypeEnum, amount: number) {
     this.type = type
     this.amount = amount
   }
 
   isItFoodExpense(): boolean {
-    return this.type === 'dinner' || this.type === 'breakfast'
+    return this.type === ExpenseTypeEnum.Dinner || this.type === ExpenseTypeEnum.Breakfast
   }
 
   isItOverExpense(): boolean {
-    return (this.type == 'dinner' && this.amount > 5000) ||
-           (this.type == 'breakfast' && this.amount > 1000)
+    return (
+      (this.type == ExpenseTypeEnum.Dinner && this.amount > 5000) ||
+      (this.type == ExpenseTypeEnum.Breakfast && this.amount > 1000)
+    )
   }
 
   mealOverExpensesMarker(): string {
@@ -105,4 +107,4 @@ class ExpenseReport {
   }
 }
 
-export { sumTwoValues, printHelloWorld, ExpenseReport, Expense, ExpenseType }
+export { sumTwoValues, printHelloWorld, ExpenseReport, Expense, ExpenseTypeEnum }
