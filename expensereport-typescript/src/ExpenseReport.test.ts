@@ -1,4 +1,4 @@
-import { printHelloWorld, sumTwoValues, Expense, ExpenseType, ExpenseReport } from './ExpenseReport'
+import { printHelloWorld, sumTwoValues, Expense, ExpenseReport } from './ExpenseReport'
 
 describe(`ExpenseReport`, () => {
     it(`should keep its original behavior`, () => {
