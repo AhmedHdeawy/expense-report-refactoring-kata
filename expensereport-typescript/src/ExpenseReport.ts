@@ -26,6 +26,21 @@ class ExpenseReport {
 
 const title = () => process.stdout.write("Expenses: " + new Date().toISOString().substr(0, 10) + "\n")
 
+function getExpenseName(expense: Expense, expenseName: string) {
+  switch (expense.type) {
+    case "dinner":
+      expenseName = "Dinner"
+      break
+    case "breakfast":
+      expenseName = "Breakfast"
+      break
+    case "car-rental":
+      expenseName = "Car Rental"
+      break
+  }
+  return expenseName
+}
+
 function printReport(expenses: Expense[]): void {
   let totalExpenses = 0
   let mealExpenses = 0
@@ -39,17 +54,7 @@ function printReport(expenses: Expense[]): void {
     }
 
     let expenseName = ""
-    switch (expense.type) {
-      case "dinner":
-        expenseName = "Dinner"
-        break
-      case "breakfast":
-        expenseName = "Breakfast"
-        break
-      case "car-rental":
-        expenseName = "Car Rental"
-        break
-    }
+    expenseName = getExpenseName(expense, expenseName)
 
     const mealOverExpensesMarker = expense.type == "dinner" && expense.amount > 5000 || expense.type == "breakfast" && expense.amount > 1000 ? "X" : " "
 
