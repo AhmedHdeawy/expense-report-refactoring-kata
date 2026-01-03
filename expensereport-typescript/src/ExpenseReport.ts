@@ -47,7 +47,6 @@ class ExpenseReport {
 
     this.title()
 
-
     for (const expense of this.expenses) {
       if (expense.type == "dinner" || expense.type == "breakfast") {
         mealExpenses += expense.amount
