@@ -37,9 +37,26 @@ describe(`ExpenseReport`, () => {
 
     new ExpenseReport([new Expense('car-rental', 3000)]).printReport()
     expect(interceptedOutput).toEqual(
-      `Expenses: ${new Date()
-        .toISOString()
-        .substr(0, 10)}\nCar Rental\t3000\t \nMeal Expenses: 0\nTotal Expenses: 3000\n`,
+      `Expenses: ${new Date().toISOString().substr(0, 10)}\nCar Rental\t3000\t \nMeal Expenses: 0\nTotal Expenses: 3000\n`,
+    )
+  })
+
+  // add tests for multiple expenses
+  it(`should handle multiple expenses correctly`, () => {
+    let interceptedOutput = ''
+    jest.spyOn(process.stdout, 'write').mockImplementation((output: string): boolean => {
+      interceptedOutput += output
+      return true
+    })
+
+    new ExpenseReport([
+      new Expense('dinner', 4000),
+      new Expense('breakfast', 800),
+      new Expense('car-rental', 2000),
+      new Expense('dinner', 6000),
+    ]).printReport()
+    expect(interceptedOutput).toEqual(
+      `Expenses: ${new Date().toISOString().substr(0, 10)}\nDinner\t4000\t \nBreakfast\t800\t \nCar Rental\t2000\t \nDinner\t6000\tX\nMeal Expenses: 10800\nTotal Expenses: 12800\n`,
     )
   })
 })
