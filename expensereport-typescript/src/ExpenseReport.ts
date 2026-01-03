@@ -18,8 +18,8 @@ class Expense {
 }
 
 function printReport(expenses: Expense[]) {
-  let totalExpenses: number = 0
-  let mealExpenses: number = 0
+  let totalExpenses = 0
+  let mealExpenses = 0
 
   process.stdout.write("Expenses: " + new Date().toISOString().substr(0, 10) + "\n")
 
@@ -42,7 +42,7 @@ function printReport(expenses: Expense[]) {
         break
     }
 
-    let mealOverExpensesMarker = expense.type == "dinner" && expense.amount > 5000 || expense.type == "breakfast" && expense.amount > 1000 ? "X" : " "
+    const mealOverExpensesMarker = expense.type == "dinner" && expense.amount > 5000 || expense.type == "breakfast" && expense.amount > 1000 ? "X" : " "
 
     process.stdout.write(expenseName + "\t" + expense.amount + "\t" + mealOverExpensesMarker + "\n")
 
