@@ -25,8 +25,10 @@ class ExpenseReport {
     this.expenses = expenses
   }
 
-  printTitle = (): boolean =>
+  printTitle(): void {
     process.stdout.write('Expenses: ' + new Date().toISOString().substr(0, 10) + '\n')
+  }
+
 
   getExpenseName(expense: Expense, expenseName: string): string {
     switch (expense.type) {
