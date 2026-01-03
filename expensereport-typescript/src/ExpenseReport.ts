@@ -55,7 +55,7 @@ class ExpenseReport {
     this.calculateTotalExpenses()
 
     for (const expense of this.expenses) {
-      let expenseName = this.getExpenseName(expense)
+      const expenseName = this.getExpenseName(expense)
 
       const mealOverExpensesMarker =
         (expense.type == 'dinner' && expense.amount > 5000) ||
