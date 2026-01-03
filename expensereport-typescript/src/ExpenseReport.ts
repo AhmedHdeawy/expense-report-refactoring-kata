@@ -23,11 +23,29 @@ class ExpenseReport {
     this.expenses = expenses
   }
 
+
+  title = () => process.stdout.write("Expenses: " + new Date().toISOString().substr(0, 10) + "\n")
+
+  getExpenseName(expense: Expense, expenseName: string) {
+    switch (expense.type) {
+      case "dinner":
+        expenseName = "Dinner"
+        break
+      case "breakfast":
+        expenseName = "Breakfast"
+        break
+      case "car-rental":
+        expenseName = "Car Rental"
+        break
+    }
+    return expenseName
+  }
+
   printReport(): void {
     let totalExpenses = 0
     let mealExpenses = 0
 
-    title()
+    this.title()
 
 
     for (const expense of this.expenses) {
@@ -36,7 +54,7 @@ class ExpenseReport {
       }
 
       let expenseName = ""
-      expenseName = getExpenseName(expense, expenseName)
+      expenseName = this.getExpenseName(expense, expenseName)
 
       const mealOverExpensesMarker = expense.type == "dinner" && expense.amount > 5000 || expense.type == "breakfast" && expense.amount > 1000 ? "X" : " "
 
@@ -49,23 +67,6 @@ class ExpenseReport {
     process.stdout.write("Total Expenses: " + totalExpenses + "\n")
   }
 
-}
-
-const title = () => process.stdout.write("Expenses: " + new Date().toISOString().substr(0, 10) + "\n")
-
-function getExpenseName(expense: Expense, expenseName: string) {
-  switch (expense.type) {
-    case "dinner":
-      expenseName = "Dinner"
-      break
-    case "breakfast":
-      expenseName = "Breakfast"
-      break
-    case "car-rental":
-      expenseName = "Car Rental"
-      break
-  }
-  return expenseName
 }
 
 
