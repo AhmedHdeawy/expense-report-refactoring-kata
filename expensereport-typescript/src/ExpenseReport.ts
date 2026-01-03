@@ -22,13 +22,14 @@ class Expense {
   }
 
   isItFoodExpense(): boolean {
-    return this.type === ExpenseTypeEnum.Dinner || this.type === ExpenseTypeEnum.Breakfast
+    return this.type === ExpenseTypeEnum.Dinner || this.type === ExpenseTypeEnum.Breakfast || this.type === ExpenseTypeEnum.Lunch
   }
 
   isItOverExpense(): boolean {
     return (
       (this.type == ExpenseTypeEnum.Dinner && this.amount > 5000) ||
-      (this.type == ExpenseTypeEnum.Breakfast && this.amount > 1000)
+      (this.type == ExpenseTypeEnum.Breakfast && this.amount > 1000) ||
+      (this.type == ExpenseTypeEnum.Lunch && this.amount > 2000)
     )
   }
 

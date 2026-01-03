@@ -72,7 +72,7 @@ describe(`ExpenseReport`, () => {
       new Expense(ExpenseTypeEnum.Lunch, 1500),
     ]).printReport()
     expect(interceptedOutput).toEqual(
-      `Expenses: ${todayDate}\nLunch\t1500\t \nMeal Expenses: 0\nTotal Expenses: 1500\n`,
+      `Expenses: ${todayDate}\nLunch\t1500\t \nMeal Expenses: 1500\nTotal Expenses: 1500\n`,
     )
   })
 
