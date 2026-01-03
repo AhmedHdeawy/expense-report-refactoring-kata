@@ -11,11 +11,7 @@ describe(`ExpenseReport`, () => {
           new Expense("dinner", 5001)
         ])
         expect(interceptedOutput).toEqual(
-          'Expenses: ' +
-            new Date().toISOString().substr(0, 10) +
-            '\n' +
-            'Dinner\t5001\tX\n' +
-            'Meal Expenses: 5001\nTotal Expenses: 5001\n'
+          `Expenses: ${new Date().toISOString().substr(0, 10)}\nDinner\t5001\tX\nMeal Expenses: 5001\nTotal Expenses: 5001\n`,
         )
     })
 })
