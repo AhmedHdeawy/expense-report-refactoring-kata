@@ -47,11 +47,7 @@ class ExpenseReport {
 
     this.title()
 
-    for (const expense of this.expenses) {
-      if (expense.type == 'dinner' || expense.type == 'breakfast') {
-        this.mealExpenses += expense.amount
-      }
-    }
+    this.calculateMealExpenses()
 
     this.calculateTotalExpenses()
 
@@ -68,7 +64,15 @@ class ExpenseReport {
     process.stdout.write("Total Expenses: " + this.totalExpenses + "\n")
   }
 
-private calculateTotalExpenses() {
+private calculateMealExpenses() {
+  for (const expense of this.expenses) {
+    if (expense.type == 'dinner' || expense.type == 'breakfast') {
+      this.mealExpenses += expense.amount
+    }
+  }
+}
+
+  private calculateTotalExpenses() {
   for (const expense of this.expenses) {
     this.totalExpenses += expense.amount
   }
