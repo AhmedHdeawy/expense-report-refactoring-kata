@@ -54,14 +54,16 @@ class ExpenseReport {
     }
 
     for (const expense of this.expenses) {
+      this.totalExpenses += expense.amount
+    }
+
+    for (const expense of this.expenses) {
       let expenseName = ""
       expenseName = this.getExpenseName(expense, expenseName)
 
       const mealOverExpensesMarker = expense.type == "dinner" && expense.amount > 5000 || expense.type == "breakfast" && expense.amount > 1000 ? "X" : " "
 
       process.stdout.write(expenseName + "\t" + expense.amount + "\t" + mealOverExpensesMarker + "\n")
-
-      this.totalExpenses += expense.amount
     }
 
     process.stdout.write("Meal Expenses: " + this.mealExpenses + "\n")
