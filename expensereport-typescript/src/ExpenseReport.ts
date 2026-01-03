@@ -20,6 +20,7 @@ class Expense {
 class ExpenseReport {
   expenses: Expense[]
   mealExpenses = 0
+  totalExpenses = 0
   constructor(expenses: Expense[]) {
     this.expenses = expenses
   }
@@ -43,7 +44,6 @@ class ExpenseReport {
   }
 
   printReport(): void {
-    let totalExpenses = 0
 
     this.title()
 
@@ -59,11 +59,11 @@ class ExpenseReport {
 
       process.stdout.write(expenseName + "\t" + expense.amount + "\t" + mealOverExpensesMarker + "\n")
 
-      totalExpenses += expense.amount
+      this.totalExpenses += expense.amount
     }
 
     process.stdout.write("Meal Expenses: " + this.mealExpenses + "\n")
-    process.stdout.write("Total Expenses: " + totalExpenses + "\n")
+    process.stdout.write("Total Expenses: " + this.totalExpenses + "\n")
   }
 
 }
