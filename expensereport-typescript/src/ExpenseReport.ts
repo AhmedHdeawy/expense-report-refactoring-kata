@@ -46,12 +46,14 @@ class ExpenseReport {
   expenses: Expense[]
   mealExpenses = 0
   totalExpenses = 0
+  _todayDate: string = new Date().toISOString().substr(0, 10)
+
   constructor(expenses: Expense[]) {
     this.expenses = expenses
   }
 
   printTitle(): void {
-    process.stdout.write('Expenses: ' + new Date().toISOString().substr(0, 10) + '\n')
+    process.stdout.write('Expenses: ' + this._todayDate + '\n')
   }
 
   printReport(): void {
@@ -79,7 +81,12 @@ class ExpenseReport {
 
   private printExpenseDetails(expense: Expense) {
     process.stdout.write(
-      expense.getExpenseName() + '\t' + expense.amount + '\t' + expense.mealOverExpensesMarker() + '\n',
+      expense.getExpenseName() +
+        '\t' +
+        expense.amount +
+        '\t' +
+        expense.mealOverExpensesMarker() +
+        '\n',
     )
   }
 
