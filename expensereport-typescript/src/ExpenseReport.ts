@@ -53,9 +53,7 @@ class ExpenseReport {
       }
     }
 
-    for (const expense of this.expenses) {
-      this.totalExpenses += expense.amount
-    }
+    this.calculateTotalExpenses()
 
     for (const expense of this.expenses) {
       let expenseName = ""
@@ -70,6 +68,11 @@ class ExpenseReport {
     process.stdout.write("Total Expenses: " + this.totalExpenses + "\n")
   }
 
+private calculateTotalExpenses() {
+  for (const expense of this.expenses) {
+    this.totalExpenses += expense.amount
+  }
+}
 }
 
 
