@@ -26,7 +26,7 @@ class ExpenseReport {
 
   title = ():boolean => process.stdout.write("Expenses: " + new Date().toISOString().substr(0, 10) + "\n")
 
-  getExpenseName(expense: Expense, expenseName: string) {
+  getExpenseName(expense: Expense, expenseName: string): string {
     switch (expense.type) {
       case "dinner":
         expenseName = "Dinner"
