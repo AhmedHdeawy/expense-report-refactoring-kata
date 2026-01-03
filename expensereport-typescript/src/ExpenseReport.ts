@@ -30,7 +30,8 @@ class ExpenseReport {
   }
 
 
-  getExpenseName(expense: Expense, expenseName: string): string {
+  getExpenseName(expense: Expense): string {
+    let expenseName = ''
     switch (expense.type) {
       case 'dinner':
         expenseName = 'Dinner'
@@ -41,6 +42,7 @@ class ExpenseReport {
       case 'car-rental':
         expenseName = 'Car Rental'
         break
+      default:
     }
     return expenseName
   }
@@ -53,8 +55,7 @@ class ExpenseReport {
     this.calculateTotalExpenses()
 
     for (const expense of this.expenses) {
-      let expenseName = ''
-      expenseName = this.getExpenseName(expense, expenseName)
+      let expenseName = this.getExpenseName(expense)
 
       const mealOverExpensesMarker =
         (expense.type == 'dinner' && expense.amount > 5000) ||
