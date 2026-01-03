@@ -24,6 +24,10 @@ class Expense {
     return (this.type == 'dinner' && this.amount > 5000) ||
            (this.type == 'breakfast' && this.amount > 1000)
   }
+
+  mealOverExpensesMarker(): string {
+    return this.isItOverExpense() ? 'X' : ' '
+  }
 }
 
 class ExpenseReport {
@@ -75,7 +79,7 @@ class ExpenseReport {
 
   private printExpenseDetails(expense: Expense, mealOverExpensesMarker: string) {
     process.stdout.write(
-      this.getExpenseName(expense) + '\t' + expense.amount + '\t' + mealOverExpensesMarker + '\n',
+      this.getExpenseName(expense) + '\t' + expense.amount + '\t' + expense.mealOverExpensesMarker() + '\n',
     )
   }
 
