@@ -1,12 +1,12 @@
-const message = 'Hello, World!\n';
+const message = 'Hello, World!\n'
 
 const sumTwoValues = (a: number, b: number): number => a + b
 
 const printHelloWorld = (): void => {
-  process.stdout.write(message);
+  process.stdout.write(message)
 }
 
-type ExpenseType = "dinner" | "breakfast" | "car-rental"
+type ExpenseType = 'dinner' | 'breakfast' | 'car-rental'
 
 class Expense {
   type: ExpenseType
@@ -25,26 +25,25 @@ class ExpenseReport {
     this.expenses = expenses
   }
 
-
-  title = ():boolean => process.stdout.write("Expenses: " + new Date().toISOString().substr(0, 10) + "\n")
+  title = (): boolean =>
+    process.stdout.write('Expenses: ' + new Date().toISOString().substr(0, 10) + '\n')
 
   getExpenseName(expense: Expense, expenseName: string): string {
     switch (expense.type) {
-      case "dinner":
-        expenseName = "Dinner"
+      case 'dinner':
+        expenseName = 'Dinner'
         break
-      case "breakfast":
-        expenseName = "Breakfast"
+      case 'breakfast':
+        expenseName = 'Breakfast'
         break
-      case "car-rental":
-        expenseName = "Car Rental"
+      case 'car-rental':
+        expenseName = 'Car Rental'
         break
     }
     return expenseName
   }
 
   printReport(): void {
-
     this.title()
 
     this.calculateMealExpenses()
@@ -52,32 +51,37 @@ class ExpenseReport {
     this.calculateTotalExpenses()
 
     for (const expense of this.expenses) {
-      let expenseName = ""
+      let expenseName = ''
       expenseName = this.getExpenseName(expense, expenseName)
 
-      const mealOverExpensesMarker = expense.type == "dinner" && expense.amount > 5000 || expense.type == "breakfast" && expense.amount > 1000 ? "X" : " "
+      const mealOverExpensesMarker =
+        (expense.type == 'dinner' && expense.amount > 5000) ||
+        (expense.type == 'breakfast' && expense.amount > 1000)
+          ? 'X'
+          : ' '
 
-      process.stdout.write(expenseName + "\t" + expense.amount + "\t" + mealOverExpensesMarker + "\n")
+      process.stdout.write(
+        expenseName + '\t' + expense.amount + '\t' + mealOverExpensesMarker + '\n',
+      )
     }
 
-    process.stdout.write("Meal Expenses: " + this.mealExpenses + "\n")
-    process.stdout.write("Total Expenses: " + this.totalExpenses + "\n")
+    process.stdout.write('Meal Expenses: ' + this.mealExpenses + '\n')
+    process.stdout.write('Total Expenses: ' + this.totalExpenses + '\n')
   }
 
-private calculateMealExpenses() {
-  for (const expense of this.expenses) {
-    if (expense.type == 'dinner' || expense.type == 'breakfast') {
-      this.mealExpenses += expense.amount
+  private calculateMealExpenses() {
+    for (const expense of this.expenses) {
+      if (expense.type == 'dinner' || expense.type == 'breakfast') {
+        this.mealExpenses += expense.amount
+      }
     }
   }
-}
 
   private calculateTotalExpenses() {
-  for (const expense of this.expenses) {
-    this.totalExpenses += expense.amount
+    for (const expense of this.expenses) {
+      this.totalExpenses += expense.amount
+    }
   }
 }
-}
-
 
 export { sumTwoValues, printHelloWorld, ExpenseReport, Expense, ExpenseType }
