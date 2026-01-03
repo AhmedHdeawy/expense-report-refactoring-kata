@@ -54,24 +54,6 @@ class ExpenseReport {
     process.stdout.write('Expenses: ' + new Date().toISOString().substr(0, 10) + '\n')
   }
 
-
-  getExpenseName(expense: Expense): string {
-    let expenseName = ''
-    switch (expense.type) {
-      case 'dinner':
-        expenseName = 'Dinner'
-        break
-      case 'breakfast':
-        expenseName = 'Breakfast'
-        break
-      case 'car-rental':
-        expenseName = 'Car Rental'
-        break
-      default:
-    }
-    return expenseName
-  }
-
   printReport(): void {
     this.printTitle()
 
