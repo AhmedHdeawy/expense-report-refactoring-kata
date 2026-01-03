@@ -67,12 +67,16 @@ class ExpenseReport {
 
     this.calculateTotalExpenses()
 
-    for (const expense of this.expenses) {
-      this.printExpenseDetails(expense)
-    }
+    this.printExpenses()
 
     process.stdout.write('Meal Expenses: ' + this.mealExpenses + '\n')
     process.stdout.write('Total Expenses: ' + this.totalExpenses + '\n')
+  }
+
+  private printExpenses() {
+    for (const expense of this.expenses) {
+      this.printExpenseDetails(expense)
+    }
   }
 
   private printExpenseDetails(expense: Expense) {
