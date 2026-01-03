@@ -6,7 +6,6 @@ const printHelloWorld = (): void => {
   process.stdout.write(message)
 }
 
-type ExpenseType = 'dinner' | 'breakfast' | 'car-rental'
 enum ExpenseTypeEnum {
   Dinner = 'dinner',
   Breakfast = 'breakfast',
