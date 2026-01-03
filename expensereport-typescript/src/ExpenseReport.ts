@@ -63,6 +63,10 @@ class ExpenseReport {
 
     this.printExpenses()
 
+    this.printCalculationResult()
+  }
+
+  private printCalculationResult() {
     process.stdout.write('Meal Expenses: ' + this.mealExpenses + '\n')
     process.stdout.write('Total Expenses: ' + this.totalExpenses + '\n')
   }
