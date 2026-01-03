@@ -19,6 +19,11 @@ class Expense {
   isItFoodExpense(): boolean {
     return this.type === 'dinner' || this.type === 'breakfast'
   }
+
+  isItOverExpense(): boolean {
+    return (this.type == 'dinner' && this.amount > 5000) ||
+           (this.type == 'breakfast' && this.amount > 1000)
+  }
 }
 
 class ExpenseReport {
@@ -61,11 +66,7 @@ class ExpenseReport {
     for (const expense of this.expenses) {
       const expenseName = this.getExpenseName(expense)
 
-      const mealOverExpensesMarker =
-        (expense.type == 'dinner' && expense.amount > 5000) ||
-        (expense.type == 'breakfast' && expense.amount > 1000)
-          ? 'X'
-          : ' '
+      const mealOverExpensesMarker = expense.isItOverExpense() ? 'X' : ' '
 
       process.stdout.write(
         expenseName + '\t' + expense.amount + '\t' + mealOverExpensesMarker + '\n',
