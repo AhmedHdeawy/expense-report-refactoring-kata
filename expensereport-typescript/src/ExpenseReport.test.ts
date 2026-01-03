@@ -13,6 +13,19 @@ describe(`ExpenseReport`, () => {
           `Expenses: ${new Date().toISOString().substr(0, 10)}\nDinner\t5001\tX\nMeal Expenses: 5001\nTotal Expenses: 5001\n`,
         )
     })
+
+  it(`should keep its original behavior for breakfast`, () => {
+    let interceptedOutput = ''
+    jest.spyOn(process.stdout, 'write').mockImplementation((output: string): boolean => {
+      interceptedOutput += output
+      return true
+    })
+
+    new ExpenseReport([new Expense('breakfast', 1003)]).printReport()
+    expect(interceptedOutput).toEqual(
+      `Expenses: ${new Date().toISOString().substr(0, 10)}\nBreakfast\t1003\tX\nMeal Expenses: 1003\nTotal Expenses: 1003\n`,
+    )
+  })
 })
 
 describe(`given I have this test suite`, () => {
