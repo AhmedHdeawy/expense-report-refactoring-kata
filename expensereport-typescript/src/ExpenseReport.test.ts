@@ -60,6 +60,38 @@ describe(`ExpenseReport`, () => {
     )
   })
 
+  // add test for Add Lunch with an expense limit of 2000
+  it(`should handle lunch expenses correctly`, () => {
+    let interceptedOutput = ''
+    jest.spyOn(process.stdout, 'write').mockImplementation((output: string): boolean => {
+      interceptedOutput += output
+      return true
+    })
+
+    new ExpenseReport([
+      new Expense(ExpenseTypeEnum.Lunch, 1500),
+    ]).printReport()
+    expect(interceptedOutput).toEqual(
+      `Expenses: ${todayDate}\nLunch\t1500\t \nMeal Expenses: 0\nTotal Expenses: 1500\n`,
+    )
+  })
+
+  it(`should handle lunch with over expense`, () => {
+    let interceptedOutput = ''
+    jest.spyOn(process.stdout, 'write').mockImplementation((output: string): boolean => {
+      interceptedOutput += output
+      return true
+    })
+
+    new ExpenseReport([
+      new Expense(ExpenseTypeEnum.Lunch, 1500),
+      new Expense(ExpenseTypeEnum.Lunch, 2500),
+    ]).printReport()
+    expect(interceptedOutput).toEqual(
+      `Expenses: ${todayDate}\nLunch\t1500\t \nLunch\t2500\t \nMeal Expenses: 0\nTotal Expenses: 4000\n`,
+    )
+  })
+
   // add test for no expenses
   it(`should handle no expenses correctly`, () => {
     let interceptedOutput = ''

@@ -9,6 +9,7 @@ const printHelloWorld = (): void => {
 enum ExpenseTypeEnum {
   Dinner = 'dinner',
   Breakfast = 'breakfast',
+  Lunch = 'lunch',
   CarRental = 'car-rental',
 }
 
