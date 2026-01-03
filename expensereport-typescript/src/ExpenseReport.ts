@@ -64,20 +64,18 @@ class ExpenseReport {
     this.calculateTotalExpenses()
 
     for (const expense of this.expenses) {
-
-
       const mealOverExpensesMarker = expense.isItOverExpense() ? 'X' : ' '
 
-      this.printExpenseDetails(this.getExpenseName(expense), expense, mealOverExpensesMarker)
+      this.printExpenseDetails(expense, mealOverExpensesMarker)
     }
 
     process.stdout.write('Meal Expenses: ' + this.mealExpenses + '\n')
     process.stdout.write('Total Expenses: ' + this.totalExpenses + '\n')
   }
 
-  private printExpenseDetails(expenseName: string, expense: Expense, mealOverExpensesMarker: string) {
+  private printExpenseDetails(expense: Expense, mealOverExpensesMarker: string) {
     process.stdout.write(
-      expenseName + '\t' + expense.amount + '\t' + mealOverExpensesMarker + '\n',
+      this.getExpenseName(expense) + '\t' + expense.amount + '\t' + mealOverExpensesMarker + '\n',
     )
   }
 
