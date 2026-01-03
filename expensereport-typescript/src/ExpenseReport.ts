@@ -17,7 +17,7 @@ class Expense {
   }
 }
 
-function printReport(expenses: Expense[]) {
+function printReport(expenses: Expense[]): void {
   let totalExpenses = 0
   let mealExpenses = 0
 
