@@ -7,6 +7,11 @@ const printHelloWorld = (): void => {
 }
 
 type ExpenseType = 'dinner' | 'breakfast' | 'car-rental'
+enum ExpenseTypeEnum {
+  Dinner = 'dinner',
+  Breakfast = 'breakfast',
+  CarRental = 'car-rental',
+}
 
 class Expense {
   type: ExpenseType
