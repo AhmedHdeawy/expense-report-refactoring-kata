@@ -24,11 +24,13 @@ class ExpenseReport {
   }
 }
 
+const title = () => process.stdout.write("Expenses: " + new Date().toISOString().substr(0, 10) + "\n")
+
 function printReport(expenses: Expense[]): void {
   let totalExpenses = 0
   let mealExpenses = 0
 
-  process.stdout.write("Expenses: " + new Date().toISOString().substr(0, 10) + "\n")
+  title()
 
 
   for (const expense of expenses) {
